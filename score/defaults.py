@@ -1,8 +1,8 @@
-# Pattern for analyzing interests, etc.
+
 
 DEFAULT_PATTERN = r'[!@#$%^&*()№±_=\\\|\'\"\-\+\}\{\[\]\<\>\?\/]'
 
-# Search parameters scores
+
 
 INTERESTS_SCORE = 35
 FRIENDS_SCORE = 30

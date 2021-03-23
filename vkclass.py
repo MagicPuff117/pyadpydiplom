@@ -2,6 +2,7 @@ import requests
 from config import API_URL, VERSION, TOKEN, FIELDS
 from errors import *
 
+
 class VKUser:
 
     def __init__(self, user_id):
@@ -26,8 +27,8 @@ class VKUser:
             self.user_id = user_id
         self.user_data = {}
         self.sex = 0
-        self.city = 0
-        self.country = 0
+        self.city = ''
+        self.country = ''
         self.common_count = 0
         self.interests = ''
         self.music = ''
@@ -87,7 +88,7 @@ class VKUser:
         return self.user_data
 
     def update_user_data(self, kwargs):
-        if self.city == 0:
+        if self.city  == 0:
             self.city = int(kwargs['city'])
             self.user_data['city'] = {'id': self.city, 'title': ''}
         if self.country == 0:
@@ -102,7 +103,7 @@ class VKUser:
         if self.movies == '':
             self.movies = kwargs['movies']
             self.user_data['movies'] = self.movies
-        if self.tv == '':
+        if self.tv == 0:
             self.tv = kwargs['tv']
             self.user_data['tv'] = self.tv
         if self.books == '':
