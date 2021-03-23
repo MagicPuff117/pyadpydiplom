@@ -1,6 +1,6 @@
 import requests
 from config import API_URL, VERSION, TOKEN, FIELDS
-
+from errors import *
 
 class VKUser:
 
@@ -16,12 +16,12 @@ class VKUser:
                 self.user_id = user_id
             except KeyError:
                 code = request['error']['error_code']
-                if code == 5:
-                    self.error = 5
-                elif code == 18:
-                    self.error = 18
-                elif code == 113:
-                    self.error = 113
+                if code == token_error:
+                    self.error = token_error
+                elif code == user_ban_del_error:
+                    self.error = user_ban_del_error
+                elif code == user_existance:
+                    self.error = user_existance
         else:
             self.user_id = user_id
         self.user_data = {}
@@ -44,10 +44,10 @@ class VKUser:
             self.user_data = result['response'][0]
         except KeyError:
             code = result['error']['error_code']
-            if code == 18:
-                self.error = 18
-            elif code == 113:
-                self.error = 113
+            if code == user_ban_del_error:
+                self.error = user_ban_del_error
+            elif code == user_existance:
+                self.error = user_existance
         try:
             self.sex = self.user_data['sex']
         except KeyError:

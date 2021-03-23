@@ -3,6 +3,7 @@ from score.scoring import score_users
 from utils.params import ask_params, update_params
 from db.writer import writer
 from db.offset import get_offset, update_offset
+from errors import *
 import time
 
 
@@ -56,11 +57,11 @@ def get_search_result():
     user_id, sex, age_from, age_to = ask_params()
     user = VKUser(user_id)
     user.get_user_data()
-    if user.error == 5:
+    if user.error == token_error:
         print('Неправильный токен, попробуйте еще раз')
-    elif user.error == 18:
+    elif user.error == user_ban_del_error:
         print('Пользователь удален или забанен')
-    elif user.error == 113:
+    elif user.error == user_existance:
         print('Пользователь не существует')
     else:
         update_params(user)
