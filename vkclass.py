@@ -88,7 +88,7 @@ class VKUser:
         return self.user_data
 
     def update_user_data(self, kwargs):
-        if self.city  == 0:
+        if self.city == 0:
             self.city = int(kwargs['city'])
             self.user_data['city'] = {'id': self.city, 'title': ''}
         if self.country == 0:
